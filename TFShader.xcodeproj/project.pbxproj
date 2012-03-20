@@ -1,0 +1,209 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C1DB7BEF15186054000E10BA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1DB7BEE15186054000E10BA /* main.cpp */; };
+		C1DB7BF115186054000E10BA /* TFShader.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C1DB7BF015186054000E10BA /* TFShader.1 */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C1DB7BE815186054000E10BA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				C1DB7BF115186054000E10BA /* TFShader.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C1DB7BEA15186054000E10BA /* TFShader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TFShader; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1DB7BEE15186054000E10BA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C1DB7BF015186054000E10BA /* TFShader.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TFShader.1; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C1DB7BE715186054000E10BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C1DB7BDF15186054000E10BA = {
+			isa = PBXGroup;
+			children = (
+				C1DB7BED15186054000E10BA /* TFShader */,
+				C1DB7BEB15186054000E10BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C1DB7BEB15186054000E10BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C1DB7BEA15186054000E10BA /* TFShader */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C1DB7BED15186054000E10BA /* TFShader */ = {
+			isa = PBXGroup;
+			children = (
+				C1DB7BEE15186054000E10BA /* main.cpp */,
+				C1DB7BF015186054000E10BA /* TFShader.1 */,
+			);
+			path = TFShader;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C1DB7BE915186054000E10BA /* TFShader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1DB7BF415186054000E10BA /* Build configuration list for PBXNativeTarget "TFShader" */;
+			buildPhases = (
+				C1DB7BE615186054000E10BA /* Sources */,
+				C1DB7BE715186054000E10BA /* Frameworks */,
+				C1DB7BE815186054000E10BA /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TFShader;
+			productName = TFShader;
+			productReference = C1DB7BEA15186054000E10BA /* TFShader */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C1DB7BE115186054000E10BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = Stanford;
+			};
+			buildConfigurationList = C1DB7BE415186054000E10BA /* Build configuration list for PBXProject "TFShader" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C1DB7BDF15186054000E10BA;
+			productRefGroup = C1DB7BEB15186054000E10BA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C1DB7BE915186054000E10BA /* TFShader */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C1DB7BE615186054000E10BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C1DB7BEF15186054000E10BA /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		C1DB7BF215186054000E10BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		C1DB7BF315186054000E10BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C1DB7BF515186054000E10BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C1DB7BF615186054000E10BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C1DB7BE415186054000E10BA /* Build configuration list for PBXProject "TFShader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1DB7BF215186054000E10BA /* Debug */,
+				C1DB7BF315186054000E10BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1DB7BF415186054000E10BA /* Build configuration list for PBXNativeTarget "TFShader" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1DB7BF515186054000E10BA /* Debug */,
+				C1DB7BF615186054000E10BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C1DB7BE115186054000E10BA /* Project object */;
+}
