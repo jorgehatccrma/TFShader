@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		C1DB7BEF15186054000E10BA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1DB7BEE15186054000E10BA /* main.cpp */; };
 		C1DB7BF115186054000E10BA /* TFShader.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C1DB7BF015186054000E10BA /* TFShader.1 */; };
+		C1DB7BF815186078000E10BA /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DB7BF715186078000E10BA /* GLUT.framework */; };
+		C1DB7BFA1518607F000E10BA /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DB7BF91518607F000E10BA /* OpenGL.framework */; };
+		C1DB7BFC151869ED000E10BA /* TFVisualizer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1DB7BFB151869ED000E10BA /* TFVisualizer.cpp */; };
+		C1DB7C0015186D45000E10BA /* tf.vert in Sources */ = {isa = PBXBuildFile; fileRef = C1DB7BFF15186D45000E10BA /* tf.vert */; };
+		C1DB7C0215186D4F000E10BA /* tf.frag in Sources */ = {isa = PBXBuildFile; fileRef = C1DB7C0115186D4F000E10BA /* tf.frag */; };
+		C1DB7C0515186E5E000E10BA /* tf.vert in CopyFiles */ = {isa = PBXBuildFile; fileRef = C1DB7BFF15186D45000E10BA /* tf.vert */; };
+		C1DB7C0615186E5E000E10BA /* tf.frag in CopyFiles */ = {isa = PBXBuildFile; fileRef = C1DB7C0115186D4F000E10BA /* tf.frag */; };
+		C1DB7C0A1518722C000E10BA /* ShaderManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1DB7C091518722C000E10BA /* ShaderManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -22,12 +30,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		C1DB7C0415186DA0000E10BA /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 6;
+			files = (
+				C1DB7C0515186E5E000E10BA /* tf.vert in CopyFiles */,
+				C1DB7C0615186E5E000E10BA /* tf.frag in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C1DB7BEA15186054000E10BA /* TFShader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TFShader; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1DB7BEE15186054000E10BA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C1DB7BF015186054000E10BA /* TFShader.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TFShader.1; sourceTree = "<group>"; };
+		C1DB7BF715186078000E10BA /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		C1DB7BF91518607F000E10BA /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		C1DB7BFB151869ED000E10BA /* TFVisualizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TFVisualizer.cpp; sourceTree = "<group>"; };
+		C1DB7BFD151869FE000E10BA /* TFVisualizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TFVisualizer.h; sourceTree = "<group>"; };
+		C1DB7BFF15186D45000E10BA /* tf.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tf.vert; sourceTree = "<group>"; };
+		C1DB7C0115186D4F000E10BA /* tf.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tf.frag; sourceTree = "<group>"; };
+		C1DB7C0715186E96000E10BA /* utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = utils.h; sourceTree = "<group>"; };
+		C1DB7C0815187220000E10BA /* ShaderManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShaderManager.h; sourceTree = "<group>"; };
+		C1DB7C091518722C000E10BA /* ShaderManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ShaderManager.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1DB7BFA1518607F000E10BA /* OpenGL.framework in Frameworks */,
+				C1DB7BF815186078000E10BA /* GLUT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +74,8 @@
 		C1DB7BDF15186054000E10BA = {
 			isa = PBXGroup;
 			children = (
+				C1DB7BF91518607F000E10BA /* OpenGL.framework */,
+				C1DB7BF715186078000E10BA /* GLUT.framework */,
 				C1DB7BED15186054000E10BA /* TFShader */,
 				C1DB7BEB15186054000E10BA /* Products */,
 			);
@@ -60,10 +92,25 @@
 		C1DB7BED15186054000E10BA /* TFShader */ = {
 			isa = PBXGroup;
 			children = (
+				C1DB7BFE15186D31000E10BA /* shaders */,
 				C1DB7BEE15186054000E10BA /* main.cpp */,
 				C1DB7BF015186054000E10BA /* TFShader.1 */,
+				C1DB7BFB151869ED000E10BA /* TFVisualizer.cpp */,
+				C1DB7BFD151869FE000E10BA /* TFVisualizer.h */,
+				C1DB7C0715186E96000E10BA /* utils.h */,
+				C1DB7C0815187220000E10BA /* ShaderManager.h */,
+				C1DB7C091518722C000E10BA /* ShaderManager.cpp */,
 			);
 			path = TFShader;
+			sourceTree = "<group>";
+		};
+		C1DB7BFE15186D31000E10BA /* shaders */ = {
+			isa = PBXGroup;
+			children = (
+				C1DB7BFF15186D45000E10BA /* tf.vert */,
+				C1DB7C0115186D4F000E10BA /* tf.frag */,
+			);
+			name = shaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -76,6 +123,7 @@
 				C1DB7BE615186054000E10BA /* Sources */,
 				C1DB7BE715186054000E10BA /* Frameworks */,
 				C1DB7BE815186054000E10BA /* CopyFiles */,
+				C1DB7C0415186DA0000E10BA /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -118,6 +166,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C1DB7BEF15186054000E10BA /* main.cpp in Sources */,
+				C1DB7BFC151869ED000E10BA /* TFVisualizer.cpp in Sources */,
+				C1DB7C0015186D45000E10BA /* tf.vert in Sources */,
+				C1DB7C0215186D4F000E10BA /* tf.frag in Sources */,
+				C1DB7C0A1518722C000E10BA /* ShaderManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
