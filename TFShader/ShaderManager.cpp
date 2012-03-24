@@ -83,74 +83,85 @@ std::string ShaderManager::getShader(const char* pszFilename)
 
 
 
-ShaderManager::ShaderManager( const char * vertexShader, 
-                              const char * fragmentShader, 
-                              const char * geometryShader )
+GLuint ShaderManager::makeGLSLProgram( const char * vertexShader, 
+                                       const char * fragmentShader, 
+                                       const char * geometryShader )
 {
 	using std::cout;
 	using std::string;
 	
-	m_vertex_shader		= glCreateShader(GL_VERTEX_SHADER);
-	m_fragment_shader	= glCreateShader(GL_FRAGMENT_SHADER);
-	m_geometry_shader	= glCreateShader(GL_GEOMETRY_SHADER_EXT);
+	GLuint vertex_shader	= glCreateShader(GL_VERTEX_SHADER);
+	GLuint fragment_shader	= glCreateShader(GL_FRAGMENT_SHADER);
+    GLuint geometry_shader	= glCreateShader(GL_GEOMETRY_SHADER_EXT);
     
 	string	vs			= getShader( vertexShader );
 	const char*	pvs		= vs.c_str();
-	if (TF_USE_GEOMETRY_SHADER) {
+	if (geometryShader) {
         std::cout << "G";
-        glShaderSource(m_vertex_shader, 1, &pvs, NULL);
+        glShaderSource(vertex_shader, 1, &pvs, NULL);
     } else {
         std::cout << ".";
         const char * source[2] = { "#define USE_GEOMETRY_SHADER\n", pvs };
-        glShaderSource(m_vertex_shader, 2, source, NULL);
+        glShaderSource(vertex_shader, 2, source, NULL);
     }
-	glCompileShader(m_vertex_shader);
+	glCompileShader(vertex_shader);
     
 	string	fs			= getShader( fragmentShader );
 	const char*	pfs		= fs.c_str();
-	glShaderSource(m_fragment_shader, 1, &pfs, NULL);
-	glCompileShader(m_fragment_shader);
+	glShaderSource(fragment_shader, 1, &pfs, NULL);
+	glCompileShader(fragment_shader);
 
-    if (TF_USE_GEOMETRY_SHADER) {
+    if (geometryShader) {
         string	gs			= getShader( geometryShader );
         const char*	pgs		= gs.c_str();
-        glShaderSource(m_geometry_shader, 1, &pgs, NULL);
-        glCompileShader(m_geometry_shader);
+        glShaderSource(geometry_shader, 1, &pgs, NULL);
+        glCompileShader(geometry_shader);
         
     }
 
-	m_program = glCreateProgram();
+	GLuint program = glCreateProgram();
     
-	glAttachShader(m_program, m_fragment_shader);
-	glAttachShader(m_program, m_vertex_shader);
-    if (TF_USE_GEOMETRY_SHADER) {
-        glAttachShader(m_program, m_geometry_shader);
+	glAttachShader(program, fragment_shader);
+	glAttachShader(program, vertex_shader);
+    if (geometryShader) {
+        glAttachShader(program, geometry_shader);
         
         // TODO: the in/out primitives should be arguments!
-        glProgramParameteriEXT(m_program, GL_GEOMETRY_INPUT_TYPE_EXT, GL_POINTS);
-        glProgramParameteriEXT(m_program, GL_GEOMETRY_OUTPUT_TYPE_EXT, GL_LINE_STRIP);
+        glProgramParameteriEXT(program, GL_GEOMETRY_INPUT_TYPE_EXT, GL_POINTS);
+        glProgramParameteriEXT(program, GL_GEOMETRY_OUTPUT_TYPE_EXT, GL_LINE_STRIP);
         
         int		max_vertices;
         glGetIntegerv(GL_MAX_GEOMETRY_OUTPUT_VERTICES_EXT, &max_vertices);
-        glProgramParameteriEXT(m_program, GL_GEOMETRY_VERTICES_OUT_EXT, max_vertices);
+        glProgramParameteriEXT(program, GL_GEOMETRY_VERTICES_OUT_EXT, max_vertices);
     }
     
-	glLinkProgram(m_program);
+	glLinkProgram(program);
     
-	glUseProgram(m_program);
+//	glUseProgram(program);
     
-	retrieveShaderLog(cout, m_vertex_shader, "Vertex");
-	retrieveShaderLog(cout, m_fragment_shader, "Fragment");
-	if (TF_USE_GEOMETRY_SHADER) retrieveShaderLog(cout, m_geometry_shader, "Geometry");
-	retrieveProgramLog(cout, m_program);
+	retrieveShaderLog(cout, vertex_shader, "Vertex");
+	retrieveShaderLog(cout, fragment_shader, "Fragment");
+	if (geometryShader) retrieveShaderLog(cout, geometry_shader, "Geometry");
+	retrieveProgramLog(cout, program);
     
-    glUseProgram(0);    // disable the shader
+//    glUseProgram(0);    // disable the shader
+
+    return program;
     
 }
 
 
+ShaderManager::ShaderManager()
+{
+    m_programs["points"] = makeGLSLProgram( "tf.vert", "tf.frag" );
+    m_programs["lines"] = makeGLSLProgram( "tf.vert", "tf.frag", "tf.geom" );
+}
 
 ShaderManager::~ShaderManager()
 {
-    glDeleteProgram(m_program);
+    for (map<string, GLuint>::iterator it = m_programs.begin(); 
+         it != m_programs.end(); 
+         it++) {
+        glDeleteProgram((*it).second);
+    }
 }

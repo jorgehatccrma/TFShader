@@ -10,30 +10,29 @@
 #define TFShader_ShaderManager_h
 
 #include <GLUT/GLUT.h>
+#include <map>
+
+using namespace std;
 
 class ShaderManager
 {
 public:
-    ShaderManager( const char * vertexShader, 
-                   const char * fragmentShader,
-                   const char * geometryShader );
+    ShaderManager();
     ~ShaderManager();
-    
-    GLuint getProgram() { return m_program; };
-    void enableGeometricShader( bool use ) { m_use_geom = use; };
+
+    GLuint getProgram(std::string name) { return m_programs[name]; };
     
 private:
     std::string getShader(const char* pszFilename);
     void retrieveProgramLog(std::ostream& os, GLuint obj);
     void retrieveShaderLog(std::ostream& os, GLuint obj, const char * shader = "");
-    
-private:
-    bool m_use_geom;
 
-    GLuint m_vertex_shader;
-	GLuint m_fragment_shader;
-    GLuint m_geometry_shader;
-    GLuint m_program;
+    GLuint makeGLSLProgram( const char * vertexShader, 
+                            const char * fragmentShader,
+                            const char * geometryShader = NULL );
+
+private:
+    map<string, GLuint> m_programs;
 
 };
 

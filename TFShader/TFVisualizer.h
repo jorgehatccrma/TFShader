@@ -11,11 +11,6 @@
 
 #include "ShaderManager.h"
 
-#define TF_VERTEX_SHADER    "tf.vert"
-#define TF_FRAGMENT_SHADER  "tf.frag"
-#define TF_GEOMETRY_SHADER  "tf.geom"
-
-
 
 // Location/Normals
 #define X_POS 0
@@ -70,7 +65,6 @@ public:
     ~TFVisualizer();
     
     void render( float time );
-    void enableGeometricShader( bool use );    
     
 public:
     GLfloat * getDisplayScales() {return m_displayScales; };

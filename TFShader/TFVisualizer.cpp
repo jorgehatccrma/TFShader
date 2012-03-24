@@ -107,9 +107,7 @@ TFVisualizer::TFVisualizer( GLfloat ** mat,
     
     
     // create and link the sahder program (use the programable OpenGL pipeline)
-    m_shaderManager = new ShaderManager( TF_VERTEX_SHADER, 
-                                         TF_FRAGMENT_SHADER, 
-                                         TF_GEOMETRY_SHADER );
+    m_shaderManager = new ShaderManager();
 
     
     // clean up
@@ -127,7 +125,7 @@ TFVisualizer::~TFVisualizer()
 
 void TFVisualizer::render( float time )
 {
-    GLuint program = m_shaderManager->getProgram();
+    GLuint program = m_shaderManager->getProgram("points");
     glUseProgram(program);
     
     GLint vertexTime = glGetUniformLocation(program, "time_s");
