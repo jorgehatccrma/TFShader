@@ -13,6 +13,7 @@
 
 #define TF_VERTEX_SHADER    "tf.vert"
 #define TF_FRAGMENT_SHADER  "tf.frag"
+#define TF_GEOMETRY_SHADER  "tf.geom"
 
 
 
@@ -33,7 +34,7 @@
 typedef struct
 {
     GLfloat location;
-} BasicVertex;
+} Basic1DVertex;
 
 typedef struct
 {
@@ -69,6 +70,7 @@ public:
     ~TFVisualizer();
     
     void render( float time );
+    void enableGeometricShader( bool use );    
     
 public:
     GLfloat * getDisplayScales() {return m_displayScales; };
@@ -87,8 +89,10 @@ private:
     GLuint m_program;
     
     ShaderManager * m_shaderManager;
+    FullVertex * m_vertices;
     
     GLfloat m_displayScales[3];
+    
     
     
 };

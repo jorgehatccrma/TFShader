@@ -15,8 +15,8 @@
 #include "TFVisualizer.h"
 
 
-#define NUM_ROWS 512
-#define NUM_COLS 100
+#define NUM_ROWS 50//2048
+#define NUM_COLS 50//1024
 
 
 // Forward Declaraions
@@ -24,7 +24,8 @@ void idleFunc();
 void displayFunc();
 void reshapeFunc( int width, int height );
 void keyboardFunc( unsigned char, int, int );
-void mouseFunc( int button, int state, int x, int y );
+void mouseClickFunc( int button, int state, int x, int y );
+void mouseMotionFunc( int x, int y );
 void specialFunc( int key, int x, int y );
 void initialize();
 void changeLookAt();
@@ -35,9 +36,23 @@ void changeLookAt();
 GLsizei g_width  = 600;
 GLsizei g_height = 480;
 
+bool g_pause = false;
+
 TFVisualizer * g_TFvis;
 
 bool g_showTriangle = false;
+
+// world rotation (normalized [0,1])
+GLfloat g_azimuth = 0;  // 0 => 0; 1 => 2pi
+GLfloat g_elevation = 0.5; // 0 => -pi/2; 0.5 => 0; 1 => pi/2
+GLfloat g_lastAzimuth = g_azimuth;
+GLfloat g_lastElevation = g_elevation;
+int g_xOrig, g_yOrig;
+
+
+
+
+// Function Implementations
 
 void initialize()
 {
@@ -62,6 +77,10 @@ void initialize()
     // seed random number generator (just in case)
     srand( (unsigned int)time(NULL) );
     
+    
+    std::cout << "Using GL " << glGetString(GL_VERSION) << std::endl;
+    std::cout << "Using GLSL " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
+
     
     
     // TF specific stuff
@@ -117,6 +136,7 @@ void keyboardFunc( unsigned char key, int x, int y )
         case 'y':
         case 'Z':
         case 'z':
+        {
             GLfloat * ds = g_TFvis->getDisplayScales();
             GLfloat factor = 1.2;
             if ( key == 'X' ) {
@@ -136,6 +156,18 @@ void keyboardFunc( unsigned char key, int x, int y )
                 
             }
             break;
+        }
+        case 'P':
+        case 'p':
+            g_pause = !g_pause;
+            break;
+        case 'G':
+        case 'g':
+            static bool  s_use_geom = false;
+            s_use_geom = !s_use_geom;
+            std::cout << s_use_geom << std::endl;
+//            g_TFvis->enableGeometricShader(!s_use_geom);
+            break;
     }
     
     glutPostRedisplay( );
@@ -143,21 +175,23 @@ void keyboardFunc( unsigned char key, int x, int y )
 
 
 
-void mouseFunc( int button, int state, int x, int y )
-{
+void mouseClickFunc( int button, int state, int x, int y )
+{    
     if( button == GLUT_LEFT_BUTTON )
     {
-        // when left mouse button is down, move left
         if( state == GLUT_DOWN )
         {
+            g_xOrig = x;
+            g_yOrig = y;
         }
         else
         {
+            g_lastAzimuth = g_azimuth;
+            g_lastElevation = g_elevation;
         }
     }
     else if ( button == GLUT_RIGHT_BUTTON )
     {
-        // when right mouse button down, move right
         if( state == GLUT_DOWN )
         {
         }
@@ -170,6 +204,16 @@ void mouseFunc( int button, int state, int x, int y )
     }
     
     glutPostRedisplay( );
+}
+
+
+void mouseMotionFunc( int x, int y )
+{
+    // update global rotations (normalized [0,1])
+    g_azimuth = g_lastAzimuth + (float)(x-g_xOrig);
+    g_azimuth = ::fmod( g_azimuth, 360.0 );
+    g_elevation = g_lastElevation + (float)(y-g_yOrig);
+    g_elevation = ::fmod( g_elevation, 360.0 );
 }
 
 
@@ -220,7 +264,7 @@ void displayFunc( )
     static long numFrames = 0;
     numFrames++;
     
-    if (numFrames % 10 == 0) {
+    if (!g_pause) {
         GLfloat * newColumn =  new GLfloat[NUM_ROWS];
         for (int r=0; r < NUM_ROWS; r++) {
             newColumn[r] = (float)rand()/RAND_MAX - 0.5;
@@ -260,7 +304,8 @@ void displayFunc( )
         glPopMatrix();
     }
 
-    glRotatef(30, 1, 0, 0);
+    glRotatef(g_elevation, 1, 0, 0);
+    glRotatef(g_azimuth, 0, 1, 0);
     g_TFvis->render( accumTime );    // render the TF matrix
     
     // restore state
@@ -295,7 +340,8 @@ int main (int argc, char * argv[])
     glutDisplayFunc( displayFunc );
     glutReshapeFunc( reshapeFunc );
     glutKeyboardFunc( keyboardFunc );
-    glutMouseFunc( mouseFunc );
+    glutMouseFunc( mouseClickFunc );
+    glutMotionFunc( mouseMotionFunc );
     glutSpecialFunc( specialFunc );
     
     // our own initialization

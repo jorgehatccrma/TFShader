@@ -20,6 +20,10 @@ void main()
     v.y = v.y * displayScale.y;
     v.z = v.z * displayScale.z;
     
+#ifdef USE_GEOMETRY_SHADER
     gl_Position = gl_ModelViewProjectionMatrix * v;
+#else
+    gl_Position = v;
+#endif
     gl_FrontColor = c;
 }
