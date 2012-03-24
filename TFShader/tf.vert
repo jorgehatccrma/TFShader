@@ -13,6 +13,8 @@ void main()
     c.g = 1.0+(v.y-0.5);
     c.r = v.y*2.0;
     c.b = -v.y*2.0;
+    // FIXME: pass numCols as uniform, so x_val can be passed in normalized coords
+    c.a = pow((x_val+1.0)/2.0,0.05);
     
     
     /*v.x = v.x * displayScale.x;*/
