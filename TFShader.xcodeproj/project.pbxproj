@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1859322151D8577003789A5 /* tf.geom in Sources */ = {isa = PBXBuildFile; fileRef = C1859321151D8577003789A5 /* tf.geom */; };
+		C1859324151D858A003789A5 /* tf.geom in CopyFiles */ = {isa = PBXBuildFile; fileRef = C1859321151D8577003789A5 /* tf.geom */; };
 		C1DB7BEF15186054000E10BA /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C1DB7BEE15186054000E10BA /* main.cpp */; };
 		C1DB7BF115186054000E10BA /* TFShader.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C1DB7BF015186054000E10BA /* TFShader.1 */; };
 		C1DB7BF815186078000E10BA /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1DB7BF715186078000E10BA /* GLUT.framework */; };
@@ -38,12 +40,14 @@
 			files = (
 				C1DB7C0515186E5E000E10BA /* tf.vert in CopyFiles */,
 				C1DB7C0615186E5E000E10BA /* tf.frag in CopyFiles */,
+				C1859324151D858A003789A5 /* tf.geom in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C1859321151D8577003789A5 /* tf.geom */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = tf.geom; sourceTree = "<group>"; };
 		C1DB7BEA15186054000E10BA /* TFShader */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TFShader; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1DB7BEE15186054000E10BA /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C1DB7BF015186054000E10BA /* TFShader.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TFShader.1; sourceTree = "<group>"; };
@@ -109,6 +113,7 @@
 			children = (
 				C1DB7BFF15186D45000E10BA /* tf.vert */,
 				C1DB7C0115186D4F000E10BA /* tf.frag */,
+				C1859321151D8577003789A5 /* tf.geom */,
 			);
 			name = shaders;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				C1DB7C0015186D45000E10BA /* tf.vert in Sources */,
 				C1DB7C0215186D4F000E10BA /* tf.frag in Sources */,
 				C1DB7C0A1518722C000E10BA /* ShaderManager.cpp in Sources */,
+				C1859322151D8577003789A5 /* tf.geom in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,6 +260,7 @@
 				C1DB7BF615186054000E10BA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
