@@ -56,7 +56,7 @@ typedef struct
 
 
 
-class TFVisualizer {
+class TFVisualizer: public ShaderManager {
 
 public:
     TFVisualizer( GLfloat ** mat, 
@@ -82,7 +82,6 @@ private:
     
     GLuint m_program;
     
-    ShaderManager * m_shaderManager;
     FullVertex * m_vertices;
     
     GLfloat m_displayScales[3];

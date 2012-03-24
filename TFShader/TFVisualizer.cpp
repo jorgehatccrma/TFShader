@@ -20,7 +20,6 @@ TFVisualizer::TFVisualizer( GLfloat ** mat,
                            unsigned int nCols ) : 
                         m_nRows(nRows), 
                         m_nCols(nCols),
-                        m_shaderManager(NULL),
                         m_t0Col(0)
 {
     // create the VBOs
@@ -105,11 +104,6 @@ TFVisualizer::TFVisualizer( GLfloat ** mat,
                  indices, 
                  GL_STATIC_DRAW);
     
-    
-    // create and link the sahder program (use the programable OpenGL pipeline)
-    m_shaderManager = new ShaderManager();
-
-    
     // clean up
     delete indices;
 
@@ -117,7 +111,6 @@ TFVisualizer::TFVisualizer( GLfloat ** mat,
 
 TFVisualizer::~TFVisualizer()
 {
-    delete m_shaderManager;
     delete[] m_vertices;
 }
 
@@ -125,7 +118,7 @@ TFVisualizer::~TFVisualizer()
 
 void TFVisualizer::render( float time )
 {
-    GLuint program = m_shaderManager->getProgram("points");
+    GLuint program = m_programs["lines"];
     glUseProgram(program);
     
     GLint vertexTime = glGetUniformLocation(program, "time_s");

@@ -31,7 +31,7 @@ private:
                             const char * fragmentShader,
                             const char * geometryShader = NULL );
 
-private:
+protected:
     map<string, GLuint> m_programs;
 
 };
