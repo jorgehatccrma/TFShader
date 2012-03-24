@@ -20,7 +20,8 @@ TFVisualizer::TFVisualizer( GLfloat ** mat,
                            unsigned int nCols ) : 
                         m_nRows(nRows), 
                         m_nCols(nCols),
-                        m_t0Col(0)
+                        m_t0Col(0),
+                        m_current_program("lines")
 {
     // create the VBOs
     m_vertices = new FullVertex[m_nRows * m_nCols];
@@ -104,6 +105,7 @@ TFVisualizer::TFVisualizer( GLfloat ** mat,
                  indices, 
                  GL_STATIC_DRAW);
     
+        
     // clean up
     delete indices;
 
@@ -117,8 +119,8 @@ TFVisualizer::~TFVisualizer()
 
 
 void TFVisualizer::render( float time )
-{
-    GLuint program = m_programs["lines"];
+{   
+    GLuint program = m_programs[m_current_program];
     glUseProgram(program);
     
     GLint vertexTime = glGetUniformLocation(program, "time_s");
@@ -169,7 +171,7 @@ void TFVisualizer::render( float time )
     glDisableClientState(GL_VERTEX_ARRAY);
     
     
-    glUseProgram(0); // go back to the fixed pipeline
+//    glUseProgram(0); // go back to the fixed pipeline
 }
 
 
@@ -208,6 +210,18 @@ void TFVisualizer::updateTFmatrix( GLfloat * column, unsigned int length )
 
     // update the "read pointer"
     m_t0Col = ++m_t0Col % m_nCols;    
+}
+
+
+void TFVisualizer::useLines()
+{
+    m_current_program = "lines";
+}
+
+
+void TFVisualizer::usePoints()
+{
+    m_current_program = "points";
 }
 
 

@@ -88,6 +88,7 @@ void initialize()
     float ** mat = createTFmat( NUM_ROWS, NUM_COLS );
     
     g_TFvis = new TFVisualizer(mat, NUM_ROWS, NUM_COLS);
+    g_TFvis->usePoints();
     
     for (int r=0; r<NUM_ROWS; ++r) delete mat[r];
     delete mat;
@@ -167,6 +168,14 @@ void keyboardFunc( unsigned char key, int x, int y )
             s_use_geom = !s_use_geom;
             std::cout << s_use_geom << std::endl;
 //            g_TFvis->enableGeometricShader(!s_use_geom);
+            break;
+        case 'L':
+        case 'l':
+            g_TFvis->useLines();
+            break;
+        case 'K':
+        case 'k':
+            g_TFvis->usePoints();
             break;
     }
     

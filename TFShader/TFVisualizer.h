@@ -65,6 +65,8 @@ public:
     ~TFVisualizer();
     
     void render( float time );
+    void useLines();
+    void usePoints();
     
 public:
     GLfloat * getDisplayScales() {return m_displayScales; };
@@ -80,7 +82,7 @@ private:
     GLuint m_vertexVBO;
     GLuint m_indexVBO;
     
-    GLuint m_program;
+    std::string m_current_program;
     
     FullVertex * m_vertices;
     
